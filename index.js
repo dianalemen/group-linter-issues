@@ -69,7 +69,7 @@ console.log('linter check is running...')
 
 try {
   const res = exectSync('npm run test:lint')
-  console.log('success', linter.toString())
+  console.log('success', res.toString())
 } catch (err) {
   console.log('ERROR: A compile log og this file can be found in output')
 } finally {
