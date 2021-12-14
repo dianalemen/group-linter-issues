@@ -1,7 +1,6 @@
 {
-  "name": "@dianalemen/linter-errors",
+  "name": "@diana-lemen/linter-errors",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +9,11 @@
     "type": "git",
     "url": "git+https://github.com/dianalemen/group-linter-issues.git"
   },
-  "author": "",
+  "author": "Diana Lemen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dianalemen/group-linter-issues/issues"
   },
-  "homepage": "https://github.com/dianalemen/group-linter-issues#readme"
+  "homepage": "https://github.com/dianalemen/group-linter-issues#readme",
+  "description": ""
 }
