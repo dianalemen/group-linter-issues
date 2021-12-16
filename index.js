@@ -1,6 +1,5 @@
 const fs = require('fs')
 const { exectSync } = require('child_process')
-const { path } = require('path')
 
 const codeOwnerPath = './.github/CODEOWNERS'
 const gruopedByTeamPath = './ouput'
@@ -67,12 +66,4 @@ const waitForWriting = async () => {
 
 console.log('linter check is running...')
 
-try {
-  const res = exectSync('npm run test:lint')
-  console.log('success', res.toString())
-} catch (err) {
-  console.log('ERROR: A compile log og this file can be found in output')
-} finally {
-  console.log('Linter finished! Ouput is creating for you...')
-  waitForWriting()
-}
+module.exports = waitForWriting().then(() => console.log('finished'))
