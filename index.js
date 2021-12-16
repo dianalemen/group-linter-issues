@@ -1,12 +1,6 @@
 const fs = require('fs')
-const { exectSync } = require('child_process')
 
-const codeOwnerPath = './.github/CODEOWNERS'
-const gruopedByTeamPath = './ouput'
-const resultPath = './result.json'
-
-const readErrorStream = fs.createReadStream(resultPath, 'utf8')
-const readCodeownersStream = fs.createReadStream(codeOwnerPath, 'utf8')
+const gruopedByTeamPath = '../../../../ouput'
 
 const writeSream = fs.createWriteStream(gruopedByTeamPath)
 
@@ -59,7 +53,9 @@ const writeIntoFile = (errors, owners) => {
   writeSream.write(gruoped, null, 2)
 }
 
-const waitForWriting = async () => {
+const waitForWriting = async (resultUrl, codeOwnerPath) => {
+  const readErrorStream = fs.createReadStream(resultUrl, 'utf8')
+  const readCodeownersStream = fs.createReadStream(codeOwnerPath, 'utf8')
   const res = await streamToString(readErrorStream, readCodeownersStream, writeIntoFile)
   return res
 }
