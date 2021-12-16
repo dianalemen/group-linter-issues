@@ -2,4 +2,4 @@
 
 const waitForWriting = require('../index')
 
-waitForWriting()
+waitForWriting().then(() => console.log('done'))

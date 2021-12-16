@@ -66,4 +66,4 @@ const waitForWriting = async () => {
 
 console.log('linter check is running...')
 
-module.exports = waitForWriting().then(() => console.log('finished'))
+module.exports = waitForWriting
