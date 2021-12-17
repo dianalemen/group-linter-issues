@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const gruopedByTeamPath = "../../../../ouput";
+const gruopedByTeamPath = "../../ouput";
 
 const writeSream = fs.createWriteStream(gruopedByTeamPath);
 
