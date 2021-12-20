@@ -2,6 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const { exec } = require("child_process");
 
+const formatter = require("./lint-formatter");
+
 const gruopedByTeamPath = `${path.resolve()}/ouput`;
 const writeSream = fs.createWriteStream(gruopedByTeamPath);
 
@@ -81,21 +83,17 @@ const waitForWriting = async () => {
 console.log("linter check is running...");
 
 const runLinterScript = new Promise((resolve, reject) => {
-  fs.copyFile(
-    "lint-formatter.js",
-    `${path.resolve()}/lint-formatter.js`,
-    (err) => {
-      if (err) throw err;
-      console.log("lint-formatter.js was copied to root");
-    }
-  );
-    exec("npm run test:lint", (error, stdout) => {
-             if (error) {
-                reject(error);
-                return;
-            }
-            resolve(stdout)
-           });
+  fs.writeFile(`${path.resolve()}/lint-formatter.js`, formatter.toString(), (err) => {
+    if (err) throw err;
+    console.log("lint-formatter.js was copied to root");
+  });
+  exec("npm run test:lint", (error, stdout) => {
+            if (error) {
+              reject(error);
+              return;
+          }
+          resolve(stdout)
+          });
   })
 
 module.exports = () => {
