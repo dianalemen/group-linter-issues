@@ -1,5 +1,5 @@
 const fs = require("fs");
-
+const path = require("path")
 const gruopedByTeamPath = "../../ouput";
 
 const writeSream = fs.createWriteStream(gruopedByTeamPath);
@@ -24,10 +24,10 @@ function streamToString(fStream, sStream, cb) {
           .filter((val) => val.includes("@"))
           .map((val) => val.replaceAll("**", "").replaceAll("*", ""))
           .reduce((acc, val) => {
-            const [path, owner] = val.split(" ");
+            const [filePath, owner] = val.split(" ");
             acc[owner]
-              ? (acc[owner] = [...acc[owner], path])
-              : (acc[owner] = [path]);
+              ? (acc[owner] = [...acc[owner], filePath])
+              : (acc[owner] = [filePath]);
             return acc;
           }, {});
       });
@@ -45,8 +45,8 @@ const writeIntoFile = (errors, owners) => {
     const gruopedTest = Object.entries(errors).reduce(
       (errAcc, [errKey, errVal]) => {
         errVal.forEach((error) => {
-          value.forEach((path) => {
-            if (error.includes(path.trim())) {
+          value.forEach((errPath) => {
+            if (error.includes(errPath.trim())) {
               errAcc[errKey] = errAcc[errKey]
                 ? [...errAcc[errKey], error]
                 : [error];
