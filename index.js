@@ -81,13 +81,13 @@ const waitForWriting = async () => {
 console.log("linter check is running...");
 
 const runLinterScript = new Promise((resolve, reject) => {
-    exec("npm run test:lint", (error, stdout) => {
-             if (error) {
-                reject(error);
-                return;
-            }
-            resolve(stdout)
-           });
+    exec("npm run test:lint-custom", (error, stdout) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve(stdout);
+    });
   })
 
 module.exports = () => {
