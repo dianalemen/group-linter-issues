@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:lint": "./node_modules/.bin/eslint --max-warnings=0 -f ../../../../lint-formatter.js $(path.resolve())/app/javascript/{**/*,*}.{js,ts,jsx,tsx} > results.json"
+    "test:lint": "./node_modules/.bin/eslint --max-warnings=0 -f ./lint-formatter.js '../assurance/insurance/app/javascript/{**/*,*}.{js,ts,jsx,tsx}' > results.json"
   },
   "bin": {
     "group-error-by-team": "./bin/index.js"
@@ -38,6 +38,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1"
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "typescript": "^3.8.3"
   }
 }

@@ -1,12 +1,15 @@
 const fs = require("fs");
 const path = require("path")
-const gruopedByTeamPath = "../../ouput";
+const gruopedByTeamPath = `${path.resolve()}/ouput`;
 
 const writeSream = fs.createWriteStream(gruopedByTeamPath);
 const readCodeownersStream = fs.createReadStream(
   `${path.resolve()}/.github/CODEOWNERS`,
   "utf8");
-const readErrorStream = fs.createReadStream(`./results.json`, "utf8");
+const readErrorStream = fs.createReadStream(
+  `./results.json`,
+  "utf8"
+);
 
 function streamToString(fStream, sStream, cb) {
   return new Promise((resolve) => {
@@ -65,6 +68,7 @@ const writeIntoFile = (errors, owners) => {
 };
 
 const waitForWriting = async () => {
+  console.log('test test')
   const res = await streamToString(
     readErrorStream,
     readCodeownersStream,
