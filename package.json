@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:lint": "./node_modules/.bin/eslint --max-warnings=0 -f lint-formatter.js '../../../app/javascript/{**/*,*}.{js,ts,jsx,tsx}' > ../../../results.json"
+    "test:lint": "./node_modules/.bin/eslint --max-warnings=0 -f @diana-lemen/linter-errors/lint-formatter.js '../../../app/javascript/{**/*,*}.{js,ts,jsx,tsx}' > ../../../results.json"
   },
   "bin": {
     "group-error-by-team": "./bin/index.js"

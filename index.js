@@ -91,10 +91,11 @@ const runLinterScript = new Promise((resolve, reject) => {
   })
 
 module.exports = () => {
-  console.log("Linter finished! Ouput is creating for you...");
   runLinterScript
     .then(() => {
+      console.log("Linter finished! Ouput is creating for you...");
       waitForWriting();
     })
+    .catch(err => console.log(err))
     .finally(() => waitForWriting());
 };
