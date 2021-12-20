@@ -3,6 +3,10 @@ const fs = require("fs");
 const gruopedByTeamPath = "../../ouput";
 
 const writeSream = fs.createWriteStream(gruopedByTeamPath);
+const readCodeownersStream = fs.createReadStream(
+  `${path.resolve()}/.github/CODEOWNERS`,
+  "utf8");
+const readErrorStream = fs.createReadStream(`./results.json`, "utf8");
 
 function streamToString(fStream, sStream, cb) {
   return new Promise((resolve) => {
@@ -60,9 +64,7 @@ const writeIntoFile = (errors, owners) => {
   writeSream.write(JSON.stringify(gruoped, null, 2));
 };
 
-const waitForWriting = async (resultUrl, codeOwnerPath) => {
-  const readErrorStream = fs.createReadStream(resultUrl, "utf8");
-  const readCodeownersStream = fs.createReadStream(codeOwnerPath, "utf8");
+const waitForWriting = async () => {
   const res = await streamToString(
     readErrorStream,
     readCodeownersStream,
@@ -73,4 +75,15 @@ const waitForWriting = async (resultUrl, codeOwnerPath) => {
 
 console.log("linter check is running...");
 
-module.exports = waitForWriting;
+module.exports = () => {
+  try {
+    const res = exectSync("npm run test:lint");
+    console.log("success", linter.toString());
+    console.log("success", res.toString());
+  } catch (err) {
+    console.log("ERROR: A compile log of this file can be found in output");
+  } finally {
+    console.log("Linter finished! Ouput is creating for you...");
+    waitForWriting();
+  }
+};
