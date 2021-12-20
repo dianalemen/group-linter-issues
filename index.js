@@ -82,7 +82,7 @@ console.log("linter check is running...");
 
 const runLinterScript = new Promise((resolve, reject) => {
   fs.copyFile(
-    "./lint-formatter.js",
+    "lint-formatter.js",
     `${path.resolve()}/lint-formatter.js`,
     (err) => {
       if (err) throw err;
