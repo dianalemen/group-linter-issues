@@ -7,7 +7,7 @@ const readCodeownersStream = fs.createReadStream(
   `${path.resolve()}/.github/CODEOWNERS`,
   "utf8");
 const readErrorStream = fs.createReadStream(
-  `./results.json`,
+  `${path.resolve()}/results.json`,
   "utf8"
 );
 
