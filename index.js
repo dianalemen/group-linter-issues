@@ -80,13 +80,17 @@ const waitForWriting = async () => {
   return res;
 };
 
-console.log("linter check is running...");
-
 const runLinterScript = new Promise((resolve, reject) => {
-  fs.writeFile(`${path.resolve()}/lint-formatter.js`, formatter.toString(), (err) => {
-    if (err) throw err;
-    console.log("lint-formatter.js was copied to root");
-  });
+  fs.writeFile(
+    `${path.resolve()}/lint-formatter.js`,
+    "module.exports = " + formatter.toString(),
+    (err) => {
+      if (err) throw err;
+      console.log("lint-formatter.js was copied to root");
+    }
+  );
+
+  console.log("linter check is running...");
   exec("npm run test:lint", (error, stdout) => {
             if (error) {
               reject(error);
