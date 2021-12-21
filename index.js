@@ -118,7 +118,7 @@ module.exports = () => {
         fs.rm(`${path.resolve()}/lint-formatter.js`, {}, (err) =>
           console.log(err)
         );
-        fs.rm(`${path.resolve()}/ouput`, {}, (err) => console.log(err));
+        fs.rm(`${path.resolve()}/results`, {}, (err) => console.log(err));
       })
     });
 };
