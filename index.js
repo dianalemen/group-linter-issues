@@ -80,35 +80,45 @@ const waitForWriting = async () => {
   return res;
 };
 
-const runLinterScript = new Promise((resolve, reject) => {
-  fs.writeFile(
-    `${path.resolve()}/lint-formatter.js`,
-    "module.exports = " + formatter.toString(),
-    (err) => {
-      if (err) throw err;
-      console.log("lint-formatter.js was copied to root");
-    }
-  ).then(() => {
-      console.log("linter check is running...");
-      exec("npm run test:lint", (error, stdout) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        resolve(stdout);
-      });
-    })
+const writeFile = () => new Promise(resolve => {
+  return resolve(
+    fs.writeFile(
+      `${path.resolve()}/lint-formatter.js`,
+      "module.exports = " + formatter.toString(),
+      (err) => {
+        if (err) console.log("err", err);
+        console.log("lint-formatter.js was copied to root");
+      }
+    )
+  );
+})
+
+const runLinterScript = () => new Promise((resolve, reject) => {
+  return writeFile().then(() => {
+    console.log("linter check is running...");
+    exec("npm run test:lint", (error, stdout) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve(stdout);
+    });
+  })
   })
 
 module.exports = () => {
-  runLinterScript
+  runLinterScript()
     .then(() => {
       console.log("Linter finished! Ouput is creating for you...");
       waitForWriting();
     })
     .catch(err => console.log(err))
-    .finally(() => waitForWriting());
+    .finally(() => {
+      waitForWriting().then(() => {
+        fs.rm(`${path.resolve()}/lint-formatter.js`, {}, (err) =>
+          console.log(err)
+        );
+        fs.rm(`${path.resolve()}/ouput`, {}, (err) => console.log(err));
+      })
+    });
 };
-
-fs.rm(`${path.resolve()}/lint-formatter.js`);
-fs.rm(`${path.resolve()}/ouput`);
