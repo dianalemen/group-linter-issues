@@ -5,9 +5,6 @@ const { exec } = require("child_process");
 
 const formatter = require("./lint-formatter");
 
-const gruopedByTeamPath = `${path.resolve()}/ouput`;
-const writeSream = fs.createWriteStream(gruopedByTeamPath);
-
 function streamToString(fStream, sStream, cb) {
   return new Promise((resolve) => {
     const errorChunks = [];
@@ -61,7 +58,6 @@ const writeIntoFile = (errors, owners) => {
     return acc;
   }, {});
 
-  writeSream.write(JSON.stringify(gruoped, null, 2));
   stdout.write(JSON.stringify(gruoped, null, 2));
 };
 
@@ -114,13 +110,13 @@ module.exports = () => {
       console.log("Linter finished! Ouput is creating for you...");
       waitForWriting();
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log("A complete log of test:lint run"))
     .finally(() => {
       waitForWriting().then(() => {
         fs.rm(`${path.resolve()}/lint-formatter.js`, {}, (err) =>
           console.log(err)
         );
         fs.rm(`${path.resolve()}/results.json`, {}, (err) => console.log(err));
-      })
+      });
     });
 };
