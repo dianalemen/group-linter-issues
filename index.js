@@ -88,16 +88,16 @@ const runLinterScript = new Promise((resolve, reject) => {
       if (err) throw err;
       console.log("lint-formatter.js was copied to root");
     }
-  );
-
-  console.log("linter check is running...");
-  exec("npm run test:lint", (error, stdout) => {
-            if (error) {
-              reject(error);
-              return;
-          }
-          resolve(stdout)
-          });
+  ).then(() => {
+      console.log("linter check is running...");
+      exec("npm run test:lint", (error, stdout) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve(stdout);
+      });
+    })
   })
 
 module.exports = () => {
@@ -110,5 +110,5 @@ module.exports = () => {
     .finally(() => waitForWriting());
 };
 
-fs.unlink(`${path.resolve()}/lint-formatter.js`);
-fs.unlink(`${path.resolve()}/ouput`);
+fs.rm(`${path.resolve()}/lint-formatter.js`);
+fs.rm(`${path.resolve()}/ouput`);
