@@ -1,29 +1,27 @@
 {
-  "name": "@diana-lemen/linter-errors",
-  "version": "1.28.0",
+  "name": "group-issues",
+  "version": "1.0.0",
+  "description": "- add a script in your `package.json` file `test:lint`. The script will execute the next: \"./node_modules/.bin/eslint --max-warnings=0 -f ./lint-formatter.js 'path to ypur JavaScript files' > results.json\"\r - run `npx @linter-extension/group-issues`",
   "main": "index.js",
+  "bin": {
+    "group-issues": "index.js"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "child_process": "^1.0.2"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "group-error": "./bin/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dianalemen/group-linter-issues.git"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": "Diana Lemen",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dianalemen/group-linter-issues/issues"
   },
-  "homepage": "https://github.com/dianalemen/group-linter-issues#readme",
-  "description": "",
-  "dependencies": {
-    "child_process": "^1.0.2",
-    "fs": "0.0.1-security"
-  }
+  "homepage": "https://github.com/dianalemen/group-linter-issues#readme"
 }
