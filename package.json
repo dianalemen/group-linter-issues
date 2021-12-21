@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dianalemen/group-linter-issues.git"
+    "url": "git+https://github.com/dianalemen/grouped-issues.git"
   },
   "author": "Diana Lemen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dianalemen/group-linter-issues/issues"
+    "url": "https://github.com/dianalemen/grouped-issues/issues"
   },
-  "homepage": "https://github.com/dianalemen/group-linter-issues#readme"
+  "homepage": "https://github.com/dianalemen/grouped-issues#readme"
 }
