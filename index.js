@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { stdout } = require('process');
 const { exec } = require("child_process");
 
 const formatter = require("./lint-formatter");
@@ -61,6 +62,7 @@ const writeIntoFile = (errors, owners) => {
   }, {});
 
   writeSream.write(JSON.stringify(gruoped, null, 2));
+  stdout.write(JSON.stringify(gruoped, null, 2));
 };
 
 const waitForWriting = async () => {
@@ -118,7 +120,7 @@ module.exports = () => {
         fs.rm(`${path.resolve()}/lint-formatter.js`, {}, (err) =>
           console.log(err)
         );
-        fs.rm(`${path.resolve()}/results`, {}, (err) => console.log(err));
+        fs.rm(`${path.resolve()}/results.json`, {}, (err) => console.log(err));
       })
     });
 };
