@@ -104,8 +104,10 @@ module.exports = () => {
   runLinterScript
     .then(() => {
       console.log("Linter finished! Ouput is creating for you...");
-      waitForWriting();
     })
     .catch(err => console.log(err))
     .finally(() => waitForWriting());
 };
+
+fs.unlink(`${path.resolve()}/lint-formatter.js`);
+fs.unlink(`${path.resolve()}/ouput`);
