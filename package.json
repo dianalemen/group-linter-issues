@@ -1,5 +1,5 @@
 {
-  "name": "group-issues",
+  "name": "@linter-extension/group-issues",
   "version": "1.0.0",
   "description": "- add a script in your `package.json` file `test:lint`. The script will execute the next: \"./node_modules/.bin/eslint --max-warnings=0 -f ./lint-formatter.js 'path to ypur JavaScript files' > results.json\"\r - run `npx @linter-extension/group-issues`",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/dianalemen/group-linter-issues.git"
   },
-  "author": "",
+  "author": "Diana Lemen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dianalemen/group-linter-issues/issues"
